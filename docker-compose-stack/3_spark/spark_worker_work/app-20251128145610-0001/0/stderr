@@ -1,0 +1,124 @@
+Spark Executor Command: "/opt/java/openjdk/bin/java" "-cp" "/opt/spark/conf:/opt/spark/jars/*" "-Xmx1024M" "-Dspark.driver.port=38283" "-Djava.net.preferIPv6Addresses=false" "-XX:+IgnoreUnrecognizedVMOptions" "--add-opens=java.base/java.lang=ALL-UNNAMED" "--add-opens=java.base/java.lang.invoke=ALL-UNNAMED" "--add-opens=java.base/java.lang.reflect=ALL-UNNAMED" "--add-opens=java.base/java.io=ALL-UNNAMED" "--add-opens=java.base/java.net=ALL-UNNAMED" "--add-opens=java.base/java.nio=ALL-UNNAMED" "--add-opens=java.base/java.util=ALL-UNNAMED" "--add-opens=java.base/java.util.concurrent=ALL-UNNAMED" "--add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED" "--add-opens=java.base/sun.nio.ch=ALL-UNNAMED" "--add-opens=java.base/sun.nio.cs=ALL-UNNAMED" "--add-opens=java.base/sun.security.action=ALL-UNNAMED" "--add-opens=java.base/sun.util.calendar=ALL-UNNAMED" "--add-opens=java.security.jgss/sun.security.krb5=ALL-UNNAMED" "-Djdk.reflect.useDirectMethodHandle=false" "org.apache.spark.executor.CoarseGrainedExecutorBackend" "--driver-url" "spark://CoarseGrainedScheduler@db9f4191b7d9:38283" "--executor-id" "0" "--hostname" "172.18.0.7" "--cores" "2" "--app-id" "app-20251128145610-0001" "--worker-url" "spark://Worker@172.18.0.7:36531" "--resourceProfileId" "0"
+========================================
+
+Using Spark's default log4j profile: org/apache/spark/log4j2-defaults.properties
+25/11/28 14:56:12 INFO CoarseGrainedExecutorBackend: Started daemon with process name: 210@70ad29a64d53
+25/11/28 14:56:12 INFO SignalUtils: Registering signal handler for TERM
+25/11/28 14:56:12 INFO SignalUtils: Registering signal handler for HUP
+25/11/28 14:56:12 INFO SignalUtils: Registering signal handler for INT
+25/11/28 14:56:12 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+25/11/28 14:56:12 INFO SecurityManager: Changing view acls to: 185
+25/11/28 14:56:12 INFO SecurityManager: Changing modify acls to: 185
+25/11/28 14:56:12 INFO SecurityManager: Changing view acls groups to: 
+25/11/28 14:56:12 INFO SecurityManager: Changing modify acls groups to: 
+25/11/28 14:56:12 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: 185; groups with view permissions: EMPTY; users with modify permissions: 185; groups with modify permissions: EMPTY
+25/11/28 14:56:13 INFO TransportClientFactory: Successfully created connection to db9f4191b7d9/172.18.0.6:38283 after 104 ms (0 ms spent in bootstraps)
+25/11/28 14:56:13 INFO SecurityManager: Changing view acls to: 185
+25/11/28 14:56:13 INFO SecurityManager: Changing modify acls to: 185
+25/11/28 14:56:13 INFO SecurityManager: Changing view acls groups to: 
+25/11/28 14:56:13 INFO SecurityManager: Changing modify acls groups to: 
+25/11/28 14:56:13 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: 185; groups with view permissions: EMPTY; users with modify permissions: 185; groups with modify permissions: EMPTY
+25/11/28 14:56:13 INFO TransportClientFactory: Successfully created connection to db9f4191b7d9/172.18.0.6:38283 after 4 ms (0 ms spent in bootstraps)
+25/11/28 14:56:13 INFO DiskBlockManager: Created local directory at /tmp/spark-6bcc8fd0-ed8f-4718-a205-b4e2cbbb3449/executor-14854e36-7c81-4184-bb69-b627aa023f04/blockmgr-a3268c06-e930-43c9-b15d-5b3968881ede
+25/11/28 14:56:13 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+25/11/28 14:56:14 INFO CoarseGrainedExecutorBackend: Connecting to driver: spark://CoarseGrainedScheduler@db9f4191b7d9:38283
+25/11/28 14:56:14 INFO WorkerWatcher: Connecting to worker spark://Worker@172.18.0.7:36531
+25/11/28 14:56:14 INFO TransportClientFactory: Successfully created connection to /172.18.0.7:36531 after 4 ms (0 ms spent in bootstraps)
+25/11/28 14:56:14 INFO WorkerWatcher: Successfully connected to spark://Worker@172.18.0.7:36531
+25/11/28 14:56:14 INFO ResourceUtils: ==============================================================
+25/11/28 14:56:14 INFO ResourceUtils: No custom resources configured for spark.executor.
+25/11/28 14:56:14 INFO ResourceUtils: ==============================================================
+25/11/28 14:56:14 INFO CoarseGrainedExecutorBackend: Successfully registered with driver
+25/11/28 14:56:14 INFO Executor: Starting executor ID 0 on host 172.18.0.7
+25/11/28 14:56:14 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 33861.
+25/11/28 14:56:14 INFO NettyBlockTransferService: Server created on 172.18.0.7:33861
+25/11/28 14:56:14 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+25/11/28 14:56:14 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(0, 172.18.0.7, 33861, None)
+25/11/28 14:56:14 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(0, 172.18.0.7, 33861, None)
+25/11/28 14:56:14 INFO BlockManager: Initialized BlockManager: BlockManagerId(0, 172.18.0.7, 33861, None)
+25/11/28 14:56:14 INFO Executor: Starting executor with user classpath (userClassPathFirst = false): ''
+25/11/28 14:57:20 INFO CoarseGrainedExecutorBackend: Got assigned task 0
+25/11/28 14:57:20 INFO Executor: Running task 0.0 in stage 0.0 (TID 0)
+25/11/28 14:57:20 INFO TorrentBroadcast: Started reading broadcast variable 1 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 14:57:20 INFO TransportClientFactory: Successfully created connection to db9f4191b7d9/172.18.0.6:43359 after 2 ms (0 ms spent in bootstraps)
+25/11/28 14:57:20 INFO MemoryStore: Block broadcast_1_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 434.4 MiB)
+25/11/28 14:57:20 INFO TorrentBroadcast: Reading broadcast variable 1 took 131 ms
+25/11/28 14:57:20 INFO MemoryStore: Block broadcast_1 stored as values in memory (estimated size 12.1 KiB, free 434.4 MiB)
+25/11/28 14:57:21 INFO CodeGenerator: Code generated in 243.634948 ms
+25/11/28 14:57:21 INFO FileScanRDD: Reading File path: file:///opt/resources/weatherData.csv, range: 0-9995365, partition values: [empty row]
+25/11/28 14:57:21 INFO CodeGenerator: Code generated in 18.701937 ms
+25/11/28 14:57:21 INFO TorrentBroadcast: Started reading broadcast variable 0 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 14:57:21 INFO MemoryStore: Block broadcast_0_piece0 stored as bytes in memory (estimated size 34.3 KiB, free 434.3 MiB)
+25/11/28 14:57:21 INFO TorrentBroadcast: Reading broadcast variable 0 took 19 ms
+25/11/28 14:57:21 INFO MemoryStore: Block broadcast_0 stored as values in memory (estimated size 370.9 KiB, free 434.0 MiB)
+25/11/28 14:57:21 INFO Executor: Finished task 0.0 in stage 0.0 (TID 0). 1916 bytes result sent to driver
+25/11/28 14:57:22 INFO CoarseGrainedExecutorBackend: Got assigned task 1
+25/11/28 14:57:22 INFO Executor: Running task 0.0 in stage 1.0 (TID 1)
+25/11/28 14:57:22 INFO TorrentBroadcast: Started reading broadcast variable 4 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 14:57:22 INFO MemoryStore: Block broadcast_4_piece0 stored as bytes in memory (estimated size 6.0 KiB, free 434.4 MiB)
+25/11/28 14:57:22 INFO TorrentBroadcast: Reading broadcast variable 4 took 21 ms
+25/11/28 14:57:22 INFO MemoryStore: Block broadcast_4 stored as values in memory (estimated size 12.1 KiB, free 434.4 MiB)
+25/11/28 14:57:22 INFO FileScanRDD: Reading File path: file:///opt/resources/locationData.csv, range: 0-1654, partition values: [empty row]
+25/11/28 14:57:22 INFO TorrentBroadcast: Started reading broadcast variable 3 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 14:57:22 INFO MemoryStore: Block broadcast_3_piece0 stored as bytes in memory (estimated size 34.3 KiB, free 434.3 MiB)
+25/11/28 14:57:22 INFO TorrentBroadcast: Reading broadcast variable 3 took 20 ms
+25/11/28 14:57:22 INFO MemoryStore: Block broadcast_3 stored as values in memory (estimated size 370.9 KiB, free 434.0 MiB)
+25/11/28 14:57:22 INFO Executor: Finished task 0.0 in stage 1.0 (TID 1). 1661 bytes result sent to driver
+25/11/28 15:00:39 INFO CoarseGrainedExecutorBackend: Got assigned task 2
+25/11/28 15:00:39 INFO Executor: Running task 0.0 in stage 2.0 (TID 2)
+25/11/28 15:00:39 INFO TorrentBroadcast: Started reading broadcast variable 7 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 15:00:39 INFO MemoryStore: Block broadcast_7_piece0 stored as bytes in memory (estimated size 7.3 KiB, free 434.4 MiB)
+25/11/28 15:00:39 INFO TorrentBroadcast: Reading broadcast variable 7 took 29 ms
+25/11/28 15:00:39 INFO MemoryStore: Block broadcast_7 stored as values in memory (estimated size 14.2 KiB, free 434.4 MiB)
+25/11/28 15:00:39 INFO CodeGenerator: Code generated in 14.887868 ms
+25/11/28 15:00:39 INFO FileScanRDD: Reading File path: file:///opt/resources/locationData.csv, range: 0-1654, partition values: [empty row]
+25/11/28 15:00:39 INFO CodeGenerator: Code generated in 16.660357 ms
+25/11/28 15:00:39 INFO TorrentBroadcast: Started reading broadcast variable 6 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 15:00:39 INFO MemoryStore: Block broadcast_6_piece0 stored as bytes in memory (estimated size 34.3 KiB, free 434.3 MiB)
+25/11/28 15:00:39 INFO TorrentBroadcast: Reading broadcast variable 6 took 16 ms
+25/11/28 15:00:39 INFO MemoryStore: Block broadcast_6 stored as values in memory (estimated size 370.9 KiB, free 434.0 MiB)
+25/11/28 15:00:39 INFO CodeGenerator: Code generated in 8.427102 ms
+25/11/28 15:00:39 INFO Executor: Finished task 0.0 in stage 2.0 (TID 2). 2282 bytes result sent to driver
+25/11/28 15:00:40 INFO CoarseGrainedExecutorBackend: Got assigned task 3
+25/11/28 15:00:40 INFO CoarseGrainedExecutorBackend: Got assigned task 4
+25/11/28 15:00:40 INFO Executor: Running task 0.0 in stage 3.0 (TID 3)
+25/11/28 15:00:40 INFO Executor: Running task 1.0 in stage 3.0 (TID 4)
+25/11/28 15:00:40 INFO TorrentBroadcast: Started reading broadcast variable 10 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 15:00:40 INFO MemoryStore: Block broadcast_10_piece0 stored as bytes in memory (estimated size 26.1 KiB, free 434.0 MiB)
+25/11/28 15:00:40 INFO TorrentBroadcast: Reading broadcast variable 10 took 20 ms
+25/11/28 15:00:40 INFO MemoryStore: Block broadcast_10 stored as values in memory (estimated size 58.0 KiB, free 433.9 MiB)
+25/11/28 15:00:41 INFO CodeGenerator: Code generated in 185.783853 ms
+25/11/28 15:00:41 INFO TorrentBroadcast: Started reading broadcast variable 8 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 15:00:41 INFO MemoryStore: Block broadcast_8_piece0 stored as bytes in memory (estimated size 1066.0 B, free 433.9 MiB)
+25/11/28 15:00:41 INFO TorrentBroadcast: Reading broadcast variable 8 took 19 ms
+25/11/28 15:00:41 INFO MemoryStore: Block broadcast_8 stored as values in memory (estimated size 8.0 MiB, free 425.9 MiB)
+25/11/28 15:00:41 INFO CodeGenerator: Code generated in 22.341115 ms
+25/11/28 15:00:41 INFO CodeGenerator: Code generated in 11.418931 ms
+25/11/28 15:00:41 INFO CodeGenerator: Code generated in 15.214909 ms
+25/11/28 15:00:41 INFO CodeGenerator: Code generated in 14.83355 ms
+25/11/28 15:00:41 INFO FileScanRDD: Reading File path: file:///opt/resources/weatherData.csv, range: 0-9995365, partition values: [empty row]
+25/11/28 15:00:41 INFO FileScanRDD: Reading File path: file:///opt/resources/weatherData.csv, range: 9995365-15796427, partition values: [empty row]
+25/11/28 15:00:41 INFO CodeGenerator: Code generated in 14.051181 ms
+25/11/28 15:00:41 INFO TorrentBroadcast: Started reading broadcast variable 9 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 15:00:41 INFO MemoryStore: Block broadcast_9_piece0 stored as bytes in memory (estimated size 34.3 KiB, free 409.4 MiB)
+25/11/28 15:00:41 INFO TorrentBroadcast: Reading broadcast variable 9 took 20 ms
+25/11/28 15:00:41 INFO MemoryStore: Block broadcast_9 stored as values in memory (estimated size 370.9 KiB, free 409.0 MiB)
+25/11/28 15:00:44 INFO Executor: Finished task 1.0 in stage 3.0 (TID 4). 3530 bytes result sent to driver
+25/11/28 15:00:44 INFO Executor: Finished task 0.0 in stage 3.0 (TID 3). 3487 bytes result sent to driver
+25/11/28 15:00:45 INFO CoarseGrainedExecutorBackend: Got assigned task 5
+25/11/28 15:00:45 INFO Executor: Running task 0.0 in stage 5.0 (TID 5)
+25/11/28 15:00:45 INFO MapOutputTrackerWorker: Updating epoch to 1 and clearing cache
+25/11/28 15:00:45 INFO TorrentBroadcast: Started reading broadcast variable 11 with 1 pieces (estimated total size 4.0 MiB)
+25/11/28 15:00:45 INFO MemoryStore: Block broadcast_11_piece0 stored as bytes in memory (estimated size 26.5 KiB, free 425.6 MiB)
+25/11/28 15:00:45 INFO TorrentBroadcast: Reading broadcast variable 11 took 27 ms
+25/11/28 15:00:45 INFO MemoryStore: Block broadcast_11 stored as values in memory (estimated size 59.4 KiB, free 425.5 MiB)
+25/11/28 15:00:45 INFO CodeGenerator: Code generated in 28.77441 ms
+25/11/28 15:00:45 INFO MapOutputTrackerWorker: Don't have map outputs for shuffle 0, fetching them
+25/11/28 15:00:45 INFO MapOutputTrackerWorker: Doing the fetch; tracker endpoint = NettyRpcEndpointRef(spark://MapOutputTracker@db9f4191b7d9:38283)
+25/11/28 15:00:45 INFO MapOutputTrackerWorker: Got the map output locations
+25/11/28 15:00:45 INFO ShuffleBlockFetcherIterator: Getting 2 (160.3 KiB) non-empty blocks including 2 (160.3 KiB) local and 0 (0.0 B) host-local and 0 (0.0 B) push-merged-local and 0 (0.0 B) remote blocks
+25/11/28 15:00:45 INFO ShuffleBlockFetcherIterator: Started 0 remote fetches in 41 ms
+25/11/28 15:00:45 INFO CodeGenerator: Code generated in 45.194311 ms
+25/11/28 15:00:45 INFO Executor: Finished task 0.0 in stage 5.0 (TID 5). 7254 bytes result sent to driver
+25/11/28 15:04:33 ERROR CoarseGrainedExecutorBackend: RECEIVED SIGNAL TERM
+54 bytes result sent to driver

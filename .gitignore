@@ -1,0 +1,9 @@
+*.pyc
+__pycache__/
+*.csv
+*.log
+
+/GBT_pipeline_model/
+2_hive/hadoop-hive-dockercompose/data_new/
+docker-compose-stack/2_hive/data_new/
+docker-compose-stack/3_spark/data_new/

@@ -1,0 +1,112 @@
+version: "3.8"
+
+services:
+  namenode:
+    image: ramilu90/hadoop-namenode
+    container_name: namenode
+    platform: linux/amd64
+    restart: always
+    ports:
+      - 9870:9870
+      - 9010:9000
+    volumes:
+      - ./data_new/namenode:/hadoop/dfs/name
+      - /home/iitgcpuser/BDP_weather_assignment/data:/opt/resources
+    environment:
+      - CLUSTER_NAME=test
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hadoop-net
+
+  datanode:
+    image: ramilu90/hadoop-datanode
+    container_name: datanode
+    platform: linux/amd64
+    restart: always
+    volumes:
+      - ./data_new/datanode:/hadoop/dfs/data
+    environment:
+      SERVICE_PRECONDITION: "namenode:9870"
+      CORE_CONF_fs_defaultFS: hdfs://namenode:9000
+    ports:
+      - "9864:9864"
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hadoop-net
+
+  resourcemanager:
+    image: ramilu90/hadoop-datanode
+    container_name: resourcemanager
+    platform: linux/amd64
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864"
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hadoop-net
+
+  nodemanager1:
+    image: ramilu90/hadoop-datanode
+    container_name: nodemanager
+    platform: linux/amd64
+    restart: always
+    environment:
+      SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode:9864 resourcemanager:8088"
+    env_file:
+      - ./hadoop.env
+    networks:
+      - hadoop-net
+
+  spark-master:
+    image: apache/spark-py:latest
+    container_name: spark-master
+    platform: linux/amd64
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+      --host spark-master
+    volumes:
+      - /home/iitgcpuser/BDP_weather_assignment/data:/opt/resources
+    depends_on:
+      - namenode
+      - datanode
+    ports:
+      - "8080:8080"
+      - "7077:7077"
+    environment:
+      - SPARK_MODE=master
+      - SPARK_MASTER_PORT=7077
+      - SPARK_MASTER_WEBUI_PORT=8080
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    networks:
+      - hadoop-net
+
+  spark-worker-1:
+    image: apache/spark-py:latest
+    container_name: spark-worker-1
+    platform: linux/amd64
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker
+      spark://spark-master:7077
+    depends_on:
+      - spark-master
+    ports:
+      - "8081:8081"
+    environment:
+      - SPARK_MODE=worker
+      - SPARK_MASTER_URL=spark://spark-master:7077
+      - SPARK_WORKER_CORES=2
+      - SPARK_WORKER_MEMORY=2G
+      - CORE_CONF_fs_defaultFS=hdfs://namenode:9000
+    volumes:
+      - /home/iitgcpuser/BDP_weather_assignment/data:/opt/resources
+      - ./spark_worker_work:/opt/spark/work
+    networks:
+      - hadoop-net
+
+networks:
+  hadoop-net:
+    driver: bridge
