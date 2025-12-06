@@ -1,0 +1,54 @@
+-- Create a Database
+CREATE DATABASE weatherDB;
+USE weatherDB;
+
+-- Creation of External Table for Location Data
+CREATE TABLE locationData_external (
+    location_id INT,
+    latitude FLOAT,
+    longitude FLOAT,
+    elevation FLOAT,
+    utc_offset_seconds INT,
+    timezone STRING,
+    timezone_abbreviation STRING,
+    city_name STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+-- Load locationData.csv data
+LOAD DATA LOCAL INPATH '/tmp/locationData.csv' OVERWRITE INTO TABLE locationData_external;
+
+--  Creation of External Table for Weather Data                                                         
+CREATE EXTERNAL TABLE weatherData_external (
+    location_id INT,
+    record_date STRING,           -- format dd/mm/yyyy
+    weather_code INT,
+    temperature_2m_max FLOAT,
+    temperature_2m_min FLOAT,
+    temperature_2m_mean FLOAT,
+    apparent_temperature_max FLOAT,
+    apparent_temperature_min FLOAT,
+    apparent_temperature_mean FLOAT,
+    daylight_duration FLOAT,
+    sunshine_duration FLOAT,
+    precipitation_sum FLOAT,
+    rain_sum FLOAT,
+    precipitation_hours FLOAT,
+    wind_speed_10m_max FLOAT,
+    wind_gusts_10m_max FLOAT,
+    wind_direction_10m_dominant FLOAT,
+    shortwave_radiation_sum FLOAT,
+    evapotranspiration FLOAT,
+    sunrise STRING,
+    sunset STRING
+)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+STORED AS TEXTFILE
+TBLPROPERTIES ("skip.header.line.count"="1");
+
+-- Load weatherData.csv data
+LOAD DATA LOCAL INPATH '/tmp/weatherData.csv' OVERWRITE INTO TABLE weatherData_external;

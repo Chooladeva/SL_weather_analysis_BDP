@@ -1,0 +1,22 @@
+SELECT
+    i.city_name,
+    CAST(SPLIT(w.record_date,'/')[2] AS INT) AS year,
+    CASE
+        WHEN CAST(SPLIT(w.record_date,'/')[1] AS INT) BETWEEN 9 AND 12 THEN 'Sep-Mar'
+        WHEN CAST(SPLIT(w.record_date,'/')[1] AS INT) BETWEEN 1 AND 3 THEN 'Sep-Mar'
+        WHEN CAST(SPLIT(w.record_date,'/')[1] AS INT) BETWEEN 4 AND 8 THEN 'Apr-Aug'
+    END AS season,
+    ROUND(AVG(w.evapotranspiration), 2) AS avg_evapotranspiration
+FROM weatherData_view w
+JOIN locationData_view i
+    ON w.location_id = i.location_id
+WHERE w.evapotranspiration IS NOT NULL
+  AND w.record_date RLIKE '^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$'
+GROUP BY i.city_name,
+         CAST(SPLIT(w.record_date,'/')[2] AS INT),
+         CASE
+             WHEN CAST(SPLIT(w.record_date,'/')[1] AS INT) BETWEEN 9 AND 12 THEN 'Sep-Mar'
+             WHEN CAST(SPLIT(w.record_date,'/')[1] AS INT) BETWEEN 1 AND 3 THEN 'Sep-Mar'
+             WHEN CAST(SPLIT(w.record_date,'/')[1] AS INT) BETWEEN 4 AND 8 THEN 'Apr-Aug'
+         END
+ORDER BY i.city_name, year, season;

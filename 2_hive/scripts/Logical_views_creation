@@ -1,0 +1,17 @@
+-- View for Location Data
+CREATE VIEW locationData_view AS
+SELECT
+    location_id,
+    city_name
+FROM locationData_external;
+
+-- View for Weather Data
+CREATE VIEW weatherData_view AS
+SELECT
+    location_id,
+    record_date,
+    temperature_2m_max,
+    temperature_2m_mean,
+    precipitation_hours,
+    evapotranspiration
+FROM weatherData_external;

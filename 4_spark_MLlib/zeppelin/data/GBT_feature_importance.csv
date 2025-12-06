@@ -1,0 +1,4 @@
+feature,importance
+precipitation_hours,0.4881180604544286
+sunshine_duration,0.33952103835522024
+wind_speed_10m_max,0.17236090119035116

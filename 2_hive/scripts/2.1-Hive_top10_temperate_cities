@@ -1,0 +1,9 @@
+SELECT
+    i.city_name,
+    ROUND(AVG(w.temperature_2m_max), 2) AS avg_max_temperature
+FROM weatherData_view w
+JOIN locationData_view i
+    ON w.location_id = i.location_id
+GROUP BY i.city_name
+ORDER BY avg_max_temperature DESC
+LIMIT 10;
