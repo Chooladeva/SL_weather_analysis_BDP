@@ -9,7 +9,7 @@ location_id,latitude,longitude,elevation,utc_offset_seconds,timezone,timezone_ab
 7,5.940246,80.55,6,19800,Asia/Colombo,530,Matara
 8,6.1511426,81.127815,8,19800,Asia/Colombo,530,Hambantota
 9,9.66608,80.034874,8,19800,Asia/Colombo,530,Jaffna
-10,9.384886,80.38228,19,19800,Asia/Colombo,530,Kilinochchi[1]
+10,9.384886,80.38228,19,19800,Asia/Colombo,530,Kilinochchi
 11,8.963093,79.96543,5,19800,Asia/Colombo,530,Mannar
 12,8.752197,80.53448,104,19800,Asia/Colombo,530,Vavuniya
 13,9.244288,80.789246,5,19800,Asia/Colombo,530,Mullaitivu
@@ -24,5 +24,3 @@ location_id,latitude,longitude,elevation,utc_offset_seconds,timezone,timezone_ab
 22,6.8541303,81.35636,152,19800,Asia/Colombo,530,Moneragala
 23,6.7135324,80.38688,73,19800,Asia/Colombo,530,Ratnapura
 24,7.275923,80.32176,172,19800,Asia/Colombo,530,Kegalle
-25,6.924429,80.96964,1089,19800,Asia/Colombo,530,Welimada
-26,6.8541303,80.97726,1217,19800,Asia/Colombo,530,Bandarawela

@@ -6,6 +6,7 @@ from pyspark.ml.tuning import CrossValidator, ParamGridBuilder
 from pyspark.ml.evaluation import RegressionEvaluator
 from pyspark.ml import Pipeline
 import builtins
+import csv
 
 # Start Spark session
 spark = SparkSession.builder.appName("Low_ET0_Prediction_May").getOrCreate()
@@ -18,14 +19,14 @@ location_df = spark.read.option("header", True).option("inferSchema", True).csv(
 df = weather_df.join(location_df, "location_id")
 df = df.withColumn("record_date", to_date(col("record_date"), "d/M/yyyy"))
 
-# Define low ET₀ threshold
-# Use 25th percentile of target as "low ET₀"
-threshold = df.approxQuantile("et0_fao_evapotranspiration", [0.25], 0.01)[0]
-print("Low ET threshold:", threshold)
-
 # Filter for May data only
 df_may = df.filter(month(col("record_date")) == 5)
 print("May record count:", df_may.count())
+
+# Define low ET₀ threshold
+# Use 25th percentile of target as "low ET₀"
+threshold = df_may.approxQuantile("et0_fao_evapotranspiration", [0.25], 0.01)[0]
+print("Low ET threshold:", threshold)
 
 # Check target range for imbalanced data
 imbalanced_data_stats = df_may.select(
@@ -47,7 +48,7 @@ df_may = df_may.select(*features, target)
 # Assign weights to handle rare low ET₀ events for Linear Regression Model
 df_may = df_may.withColumn(
     "weight",
-    when(col(target) < threshold, 3.4).otherwise(0.5)
+    when(col(target) < threshold, 4).otherwise(1)
 )
 
 # Assemble features into a vector
@@ -98,6 +99,7 @@ evaluator_r2   = RegressionEvaluator(labelCol=target, predictionCol="prediction"
 
 results = {}
 final_models = {}
+metrics = {}
 
 for name, pipeline in pipelines.items():
     print(f"\n Training: {name}")
@@ -119,6 +121,7 @@ for name, pipeline in pipelines.items():
 
     results[name] = rmse
     final_models[name] = cv_model
+    metrics[name] = {"RMSE": rmse, "MAE": mae, "R2": r2}
 
     print(f"\n{name} Results")
     print(f" RMSE: {rmse}")
@@ -129,6 +132,22 @@ for name, pipeline in pipelines.items():
 best_model_name = builtins.min(results.items(), key=lambda x: x[1])[0]
 best_model = final_models[best_model_name]
 print("\n Best Model Selected:", best_model_name)
+
+# Save the best_model after training
+best_model_path = "/opt/resources/output/sparkML_low_ET0_Prediction/best_model"
+best_model.write().overwrite().save(best_model_path)
+print(f"Best model saved to {best_model_path}")
+
+# Save metrics to CSV
+output_path = "/opt/resources/output/sparkML_low_ET0_Prediction/model_evaluation.csv"
+with open(output_path, "w", newline="") as f:
+    writer = csv.DictWriter(f, fieldnames=["Model", "RMSE", "MAE", "R2"])
+    writer.writeheader()
+    for model_name, metric_values in metrics.items():
+        row = {"Model": model_name, **metric_values}
+        writer.writerow(row)
+
+print(f"Metrics saved to {output_path}")
 
 # Recreate a clean May dataframe with the same structure as training input
 df_may_final = df.filter(month(col("record_date")) == 5).select(*features, target)
@@ -207,4 +226,3 @@ final_predictions_clean.write \
     .mode("overwrite") \
     .option("header", True) \
     .csv(f"{base_path}/all_may_predictions")
-

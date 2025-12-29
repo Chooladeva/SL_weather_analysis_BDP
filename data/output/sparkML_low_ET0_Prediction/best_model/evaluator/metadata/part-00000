@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.evaluation.RegressionEvaluator","timestamp":1765973708346,"sparkVersion":"3.4.0","uid":"RegressionEvaluator_32ba858b739a","paramMap":{"labelCol":"et0_fao_evapotranspiration","predictionCol":"prediction","metricName":"rmse"},"defaultParamMap":{"labelCol":"label","predictionCol":"prediction","throughOrigin":false,"metricName":"rmse"}}
