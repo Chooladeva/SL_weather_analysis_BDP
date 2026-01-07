@@ -65,3 +65,7 @@ This project analyses Sri Lanka’s historical weather data from **2010 to June 
 
 [Tableau Dashobaord Link](https://public.tableau.com/app/profile/chooladeva.lakshanaka.piyasiri/viz/SriLankaAnalyticsDashboard_17677487310780/Overview)
 
+[Medium Article 1 Link](https://medium.com/@chooladevapiyasiri/harnessing-big-data-for-climate-insights-decoding-a-decade-of-weather-trends-across-sri-lanka-5d74f8ca4fb2)
+
+[Medium Article 2 Link](https://medium.com/@chooladevapiyasiri/predicting-low-evapotranspiration-events-in-sri-lanka-using-apache-spark-mllib-9b4c18400cb0)
+
