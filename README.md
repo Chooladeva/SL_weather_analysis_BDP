@@ -47,6 +47,7 @@ Due to dataset scale and computational complexity, distributed frameworks were u
 - Apache Hadoop (MapReduce)
 - Apache Hive
 - Apache Spark
+- Apache Zeppelin
 
 Each tool was applied based on analytical requirements.
 
@@ -95,6 +96,20 @@ Implemented using Spark MLlib:
 - Train-test split (80% / 20%)
 - Model training
 - Model validation and evaluation
+
+## Model Evaluation & Visualization
+
+Model performance evaluation charts were created using:
+
+- Apache Zeppelin
+
+Zeppelin was used to:
+- Plot prediction vs actual evapotranspiration
+- Visualize residual distributions
+- Display regression performance metrics
+- Analyze feature relationships interactively
+
+This enabled clear, interpretable validation of model performance in a distributed Spark environment.
 
 ### Selected Features
 - Precipitation hours
