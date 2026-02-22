@@ -149,6 +149,9 @@ Big Data Processing
 Machine Learning
 - Spark MLlib
 
+Interactive Analytics
+- Apache Zeppelin
+
 Programming
 - Python
 - PySpark
