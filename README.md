@@ -1,69 +1,154 @@
-# Sri Lanka Historical Weather Analysis & Evapotranspiration Prediction
+# Sri Lanka Historical Weather Analysis & Evapotranspiration Prediction (2010–2024)
 
-This project analyses Sri Lanka’s historical weather data from **2010 to June 2024** to uncover climate patterns, extreme weather events, and district-level trends. It also implements predictive modeling to identify weather conditions leading to **low evapotranspiration in May**, providing insights for weather analysts and authorities.
+## Executive Summary
 
----
+This project performs large-scale climate analytics on Sri Lanka’s historical weather data from 2010 to June 2024, leveraging distributed computing frameworks to uncover:
 
-## **Dataset**
+- Long-term climate trends
+- District-level seasonal variations
+- Extreme weather patterns
+- Radiation and temperature anomalies
 
-- **Weather Observations:** Meteorological data for all districts, including temperature, precipitation, wind speed, radiation, and evapotranspiration.  
-- **Location Details:** City names, latitudes, longitudes, and elevations, linked to the weather data via unique identifiers.  
-- **Scope:** Full historical coverage over 14+ years, allowing analysis of trends, seasonal variations, and extreme events.
+In addition to descriptive analytics, the project implements predictive modeling to identify weather conditions that lead to low evapotranspiration during May, supporting agricultural planning and environmental decision-making.
 
----
+The system integrates Hadoop, Hive, and Spark for scalable processing and uses machine learning to model evapotranspiration behavior under varying meteorological conditions.
 
-## **Project Overview**
+## Project Objectives
+- Analyze 14+ years of district-level meteorological data
+- Identify seasonal and extreme weather trends
+- Compute radiation and temperature distribution metrics
+- Model evapotranspiration behavior using machine learning
+- Deliver decision-support insights for climate and agriculture stakeholders
 
-### 1. Data Analysis
+## Dataset Overview
 
-- **Hadoop MapReduce:**  
-  - Calculated **total precipitation** and **mean temperature** per district per month.  
-  - Identified the **month/year with highest precipitation**.  
+Geographic Scope
+- Entire Sri Lanka
+- All administrative districts
 
-- **Apache Hive:**  
-  - Ranked **top 10 most temperate cities** using max temperature.  
-  - Calculated **average evapotranspiration** for major agricultural seasons (Sep–Mar, Apr–Aug) by district.  
+Data Coverage
+- January 2010 – June 2024
+- Daily weather observations
 
-- **Spark:**  
-  - Computed the **percentage of total shortwave radiation above 15MJ/m²** per month across districts.  
-  - Derived **weekly maximum temperatures** for the hottest months.
+Core Variables
+- Temperature (min, mean, max)
+- Precipitation
+- Wind speed
+- Shortwave radiation
+- Sunshine hours
+- Evapotranspiration
+- Geographic metadata (city, latitude, longitude, elevation)
 
----
+The dataset spans over 14 years, enabling both longitudinal climate analysis and seasonal modeling.
 
-### 2. Predictive Modeling
+## Big Data Processing Architecture
 
-- Used **Spark MLlib** to model the relationship between precipitation hours, sunshine, and wind speed with evapotranspiration in May.  
-- **Workflow:**  
-  1. Data preprocessing and cleaning  
-  2. Feature selection and engineering  
-  3. Train-test split: 80% training, 20% validation  
-  4. Model training, validation, and evaluation  
-- Predicted weather conditions for low evapotranspiration to assist seasonal planning.
+Due to dataset scale and computational complexity, distributed frameworks were used:
+- Apache Hadoop (MapReduce)
+- Apache Hive
+- Apache Spark
 
----
+Each tool was applied based on analytical requirements.
 
-### 3. Visualization & Insights
+## Analytical Components
 
-- Created **static dashboards and visualizations** to summarize results:  
-  - Most precipitous month/season per district  
-  - Top 5 districts with highest precipitation  
-  - Percentage of months with mean temperature >30°C  
-  - Total number of extreme weather days (high precipitation + wind gusts)  
+**1️. Hadoop MapReduce Analysis**
 
-- Helps weather analysts and authorities make **data-driven decisions** for planning and mitigation.
+MapReduce jobs computed:
+- Total precipitation per district per month
+- Mean temperature per district per month
+- Month and year with highest recorded precipitation
 
----
+These computations enabled detection of extreme rainfall years and spatial rainfall concentration patterns.
 
-## **Technologies Used**
+**2️. Apache Hive Queries**
+- Hive was used for structured SQL-based climate analytics:
+- Ranked top 10 most temperate cities (based on max temperature)
+- Calculated average evapotranspiration for major agricultural seasons:
+  - Maha Season: September – March
+  - Yala Season: April – August
 
-- **Big Data & Processing:** Hadoop MapReduce, Apache Hive, Apache Spark  
-- **Machine Learning:** Spark MLlib  
-- **Visualization:** Tableau, static dashboards  
-- **Programming:** Python, PySpark  
+This provided district-level seasonal evapotranspiration profiles.
 
----
+**3️. Apache Spark Analysis**
+
+Spark was used for advanced distributed computation:
+- Percentage of shortwave radiation > 15 MJ/m² per month
+- Weekly maximum temperatures for hottest months
+- Aggregated extreme weather metrics
+
+Spark significantly improved computational efficiency for multi-year trend aggregation.
+
+## Predictive Modeling — Low Evapotranspiration in May
+
+Identify weather conditions associated with low evapotranspiration events in May, which directly impact:
+- Irrigation planning
+- Crop yield management
+- Water resource allocation
+
+## Machine Learning Workflow
+
+Implemented using Spark MLlib:
+
+- Data preprocessing & cleaning
+- Feature selection and engineering
+- Train-test split (80% / 20%)
+- Model training
+- Model validation and evaluation
+
+### Selected Features
+- Precipitation hours
+- Sunshine duration
+- Wind speed
+- Radiation
+- Temperature
+
+The model identified relationships between:
+- Reduced sunshine
+- Higher precipitation hours
+- Increased humidity-related variables
+
+And their collective impact on evapotranspiration decline.
+
+## Visualization & Insights
+
+Visual dashboards summarize:
+
+- Most precipitous month per district
+- Top 5 highest rainfall districts
+- % of months with mean temperature > 30°C
+- Extreme weather days (heavy rain + high wind)
+- Seasonal evapotranspiration distribution
+
+Visualization tools used:
+- Tableau
+- Static analytical dashboards
+
+## Technology Stack
+
+Big Data Processing
+-  Apache Hadoop (MapReduce)
+-  Apache Hive
+-  Apache Spark
+
+Machine Learning
+- Spark MLlib
+
+Programming
+- Python
+- PySpark
+
+Visualization
+- Tableau
+
+Static dashboards
+
+## Resources
+- Tableau Dashboard
 
 [Tableau Dashobaord Link](https://public.tableau.com/app/profile/chooladeva.lakshanaka.piyasiri/viz/SriLankaAnalyticsDashboard_17677487310780/Overview)
+
+- Medium Articles
 
 [Medium Article 1 Link](https://medium.com/@chooladevapiyasiri/harnessing-big-data-for-climate-insights-decoding-a-decade-of-weather-trends-across-sri-lanka-5d74f8ca4fb2)
 
